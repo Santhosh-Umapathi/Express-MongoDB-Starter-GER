@@ -1,6 +1,6 @@
 const MongoClient = require("mongodb").MongoClient;
 
-const url = `mongodb+srv://${process.env.MONGO_USER_NAME}:${process.env.MONGO_PASSWORD}@playground-cluster.liar9.mongodb.net/rn-ger-mongodb-starter?retryWrites=true&w=majority`;
+const url = `mongodb+srv://${process.env.MONGO_USER_NAME}:${process.env.MONGO_PASSWORD}@playground-cluster.liar9.mongodb.net/${process.env.DATABASE_NAME}?retryWrites=true&w=majority`;
 
 const client = new MongoClient(url);
 const openConnection = async () => await client.connect();
