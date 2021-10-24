@@ -26,7 +26,20 @@ const createProduct = async (req, res, next) => {
     .json({ message: " Product created successfully", product });
 };
 
-const getProducts = async (req, res, next) => {};
+const getProducts = async (req, res, next) => {
+  let products;
+  try {
+    await openConnection();
+
+    products = await db.collection("products").find().toArray();
+  } catch (error) {
+    return res.status(422).json({ message: "Products not found" });
+  }
+
+  closeConnection();
+
+  return res.status(200).json({ message: " Products found", products });
+};
 
 exports.createProduct = createProduct;
 exports.getProducts = getProducts;
