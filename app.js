@@ -11,7 +11,7 @@ app.use(express.json());
 
 //Routes
 app.post("/products", createProduct);
-// app.get("/products", getProducts);
+app.get("/products", getProducts);
 
 app.listen(PORT);
 console.log("Listening on PORT:", PORT);

@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 //Model
-const Product = require("./models/product");
+const { Product } = require("./models");
 
 const url = `mongodb+srv://${process.env.MONGO_USER_NAME}:${process.env.MONGO_PASSWORD}@playground-cluster.liar9.mongodb.net/${process.env.DATABASE_NAME}?retryWrites=true&w=majority`;
 
@@ -25,13 +25,8 @@ const createProduct = async (req, res, next) => {
 };
 
 const getProducts = async (req, res, next) => {
-  let products;
-  // try {
-
-  //   products = await db.collection("products").find().toArray();
-  // } catch (error) {
-  //   return res.status(422).json({ message: "Products not found" });
-  // }
+  const products = await Product.find().exec();
+  // const products = await Product.find().cursor()// Default collection object like mongoDb methods
 
   return res.status(200).json({ message: " Products found", products });
 };
